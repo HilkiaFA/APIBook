@@ -30,7 +30,8 @@ Update the database connection string in appsettings.json:
     "Issuer": "YourIssuer",
     "Audience": "YourAudience"
   }
-}```
+}
+
 Apply migrations to set up the database:
 dotnet ef database update
 Run the project:
