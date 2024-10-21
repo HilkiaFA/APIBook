@@ -1,26 +1,26 @@
-**Project Name: APIBook**
-
-# APIBook API Documentation
-
+APIBook API Documentation
 This project is an API built using ASP.NET Core that demonstrates JWT-based authentication and role-based access control for managing users, roles, and books. The project includes various controllers for authentication and resource management.
 
-## Requirements
+Requirements
+.NET Core SDK
+ASP.NET Core 6.0 or later
+SQL Server (for database)
+Setup
+Clone the repository:
 
-- .NET Core SDK
-- ASP.NET Core 6.0 or later
-- SQL Server (for database)
-
-## Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-repository-url.git
-   cd APIBook
+bash
+Salin kode
+git clone https://github.com/your-repository-url.git
+cd APIBook
 Install required dependencies:
+
+bash
+Salin kode
 dotnet restore
 Update the database connection string in appsettings.json:
-```bash
+
+bash
+Salin kode
 {
   "ConnectionStrings": {
     "DefaultConnection": "YourConnectionString"
@@ -31,22 +31,33 @@ Update the database connection string in appsettings.json:
     "Audience": "YourAudience"
   }
 }
-
 Apply migrations to set up the database:
+
+bash
+Salin kode
 dotnet ef database update
 Run the project:
+
+bash
+Salin kode
 dotnet run
 API Endpoints
 Authentication
-1. POST /api/Auth
+POST /api/Auth
 Authenticate a user and receive a JWT token.
 
 Request:
+
+bash
+Salin kode
 {
   "email": "user@example.com",
   "password": "yourpassword"
 }
 Response (200 OK):
+
+bash
+Salin kode
 {
   "id": "USR-1",
   "roles_id": "ROL01",
@@ -60,17 +71,25 @@ Response (200 OK):
 If authentication fails, a 400 Bad Request response will be returned.
 
 Books Management (Requires Authorization)
-2. GET /api/Books
+GET /api/Books
 Retrieve a list of books or a specific book by ID.
 
 Request (all books):
+
+bash
+Salin kode
 GET /api/Books
 Authorization: Bearer jwt_token_here
 Request (specific book):
 
+bash
+Salin kode
 GET /api/Books?id=BK1
 Authorization: Bearer jwt_token_here
 Response (200 OK):
+
+bash
+Salin kode
 [
   {
     "id": "BK1",
@@ -84,10 +103,13 @@ Response (200 OK):
 ]
 If the user does not have the required role (ROL02), a 400 Bad Request will be returned.
 
-3. POST /api/Books
+POST /api/Books
 Create a new book entry.
 
 Request:
+
+bash
+Salin kode
 {
   "book_title": "New Book",
   "author": "Author Name",
@@ -97,6 +119,9 @@ Request:
   "id_user": "USR-1"
 }
 Response (200 OK):
+
+bash
+Salin kode
 {
   "id": "BK2",
   "book_title": "New Book",
@@ -106,10 +131,13 @@ Response (200 OK):
   "price": 50000,
   "id_user": "USR-1"
 }
-4. PUT /api/Books/{id}
+PUT /api/Books/{id}
 Update a specific book's information.
 
 Request:
+
+bash
+Salin kode
 {
   "book_title": "Updated Title",
   "author": "Updated Author",
@@ -118,6 +146,9 @@ Request:
   "price": 75000
 }
 Response (200 OK):
+
+bash
+Salin kode
 {
   "id": "BK1",
   "book_title": "Updated Title",
@@ -127,22 +158,32 @@ Response (200 OK):
   "price": 75000,
   "id_user": "USR-1"
 }
-5. DELETE /api/Books/{id}
+DELETE /api/Books/{id}
 Delete a book by its ID.
 
 Request:
+
+bash
+Salin kode
 DELETE /api/Books/BK1
 Authorization: Bearer jwt_token_here
-Response (204 No Content): The book is successfully deleted.
+Response (204 No Content):
+The book is successfully deleted.
 
 Users Management
-6. GET /api/Users
+GET /api/Users
 Retrieve a list of users.
 
 Request:
+
+bash
+Salin kode
 GET /api/Users
 Authorization: Bearer jwt_token_here
 Response (200 OK):
+
+bash
+Salin kode
 [
   {
     "id": "USR-1",
@@ -158,10 +199,13 @@ Response (200 OK):
     }
   }
 ]
-7. POST /api/Users
+POST /api/Users
 Create a new user.
 
 Request:
+
+bash
+Salin kode
 {
   "roles_id": "ROL01",
   "email": "newuser@example.com",
@@ -170,6 +214,9 @@ Request:
   "birthdate": "1995-05-05"
 }
 Response (200 OK):
+
+bash
+Salin kode
 {
   "id": "USR-2",
   "roles_id": "ROL01",
@@ -179,28 +226,38 @@ Response (200 OK):
   "birthdate": "1995-05-05",
   "status_user": "Active"
 }
-8. PUT /api/Users/{id}
+PUT /api/Users/{id}
 Update a user's status.
 
 Request:
+
+bash
+Salin kode
 {
   "status_user": "Inactive"
 }
 Response (200 OK):
 
+bash
+Salin kode
 {
   "id": "USR-1",
   "status_user": "Inactive"
 }
 Role Management
-9. GET /api/Role
+GET /api/Role
 Retrieve a list of roles.
 
 Request:
+
+bash
+Salin kode
 GET /api/Role
 Authorization: Bearer jwt_token_here
 Response (200 OK):
 
+bash
+Salin kode
 [
   {
     "id": "ROL01",
@@ -214,17 +271,31 @@ Response (200 OK):
 Security
 The API uses JWT for securing endpoints. Make sure to include the Bearer token in the Authorization header for any request that requires authentication.
 
+bash
+Salin kode
 Authorization: Bearer your_jwt_token
-
-**Contribution**
+Contribution
 Fork the repository.
-Create a new feature branch (git checkout -b feature/your-feature-name).
-Commit your changes (git commit -m 'Add new feature').
-Push to the branch (git push origin feature/your-feature-name).
+
+Create a new feature branch:
+
+bash
+Salin kode
+git checkout -b feature/your-feature-name
+Commit your changes:
+
+bash
+Salin kode
+git commit -m 'Add new feature'
+Push to the branch:
+
+bash
+Salin kode
+git push origin feature/your-feature-name
 Open a Pull Request.
 
-**License**
+License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-**Authors**
+Authors
 Hilkia Farrel Azaria - Developer and Maintainer
