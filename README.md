@@ -20,6 +20,7 @@ This project is an API built using ASP.NET Core that demonstrates JWT-based auth
 Install required dependencies:
 dotnet restore
 Update the database connection string in appsettings.json:
+```bash
 {
   "ConnectionStrings": {
     "DefaultConnection": "YourConnectionString"
